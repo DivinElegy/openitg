@@ -148,6 +148,7 @@ static const CString SortOrderNames[] = {
 	"Bpm",
 	"Popularity",
 	"TopGrades",
+	"TopGradesGrouped"
 	"Artist",
 	"Genre",
 	"SongLength",

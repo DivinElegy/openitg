@@ -281,6 +281,19 @@ CString SongUtil::GetSectionNameFromSongAndSort( const Song* pSong, SortOrder so
 			}
 			return GradeToThemedString( GRADE_NO_DATA );
 		}
+	case SORT_TOP_GRADES_GROUPED:
+		{
+			int iCounts[NUM_GRADES];
+			PROFILEMAN->GetMachineProfile()->GetGrades( pSong, GAMESTATE->GetCurrentStyle()->m_StepsType, iCounts );
+
+			for( int i=GRADE_TIER01; i<NUM_GRADES; ++i )
+			{
+				Grade g = (Grade)i;
+				if( iCounts[i] > 0 )
+					return ssprintf( "%4s", GradeToThemedString(g).c_str());
+			}
+			return GradeToThemedString( GRADE_NO_DATA );
+		}
 	case SORT_EASY_METER:
 		{
 			Steps* pSteps = pSong->GetStepsByDifficulty(GAMESTATE->GetCurrentStyle()->m_StepsType,DIFFICULTY_EASY);
