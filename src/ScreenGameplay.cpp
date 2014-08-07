@@ -850,12 +850,14 @@ void ScreenGameplay::LoadCourseSongNumber( int iSongNumber )
 
 void ScreenGameplay::LoadNextSong()
 {
+	CString sSongInfo = "Song: " + GAMESTATE->m_pCurSong->GetSongDir() + "\n";
 	GAMESTATE->ResetMusicStatistics();
 
 	FOREACH_EnabledPlayer( p )
 	{
 		STATSMAN->m_CurStageStats.m_player[p].iSongsPlayed++;
 		m_textCourseSongNumber[p].SetText( ssprintf("%d", STATSMAN->m_CurStageStats.m_player[p].iSongsPlayed) );
+		sSongInfo += ssprintf( "%sDifficulty: %s\n%sMeter: %d\n", PlayerNumberToString(p).c_str(), DifficultyToThemedString(GAMESTATE->m_pCurSteps[p]->GetDifficulty()).c_str(), PlayerNumberToString(p).c_str(), GAMESTATE->m_pCurSteps[p]->GetMeter() );
 	}
 
 	LoadCourseSongNumber( GAMESTATE->GetCourseSongIndex() );
@@ -863,7 +865,7 @@ void ScreenGameplay::LoadNextSong()
 	int iPlaySongIndex = GAMESTATE->GetCourseSongIndex();
 	iPlaySongIndex %= m_apSongsQueue.size();
 	GAMESTATE->m_pCurSong.Set( m_apSongsQueue[iPlaySongIndex] );
-	GAMESTATE->SetSongInProgress( GAMESTATE->m_pCurSong->GetSongDir() );
+	GAMESTATE->SetSongInProgress( sSongInfo );
 	STATSMAN->m_CurStageStats.vpPlayedSongs.push_back( GAMESTATE->m_pCurSong );
 
 	// No need to do this here.  We do it in SongFinished().
