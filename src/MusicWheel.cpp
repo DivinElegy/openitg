@@ -455,6 +455,7 @@ void MusicWheel::BuildWheelItemDatas( vector<WheelItemData> &arrayWheelItemDatas
 	case SORT_BPM:
 	case SORT_POPULARITY:
 	case SORT_TOP_GRADES:
+	case SORT_TOP_GRADES_GROUPED:
 	case SORT_ARTIST:
 	case SORT_GENRE:
 	case SORT_SONG_LENGTH:
@@ -498,6 +499,7 @@ void MusicWheel::BuildWheelItemDatas( vector<WheelItemData> &arrayWheelItemDatas
 				bUseSections = false;
 				break;
 			case SORT_TOP_GRADES:
+			case SORT_TOP_GRADES_GROUPED:
 				SongUtil::SortSongPointerArrayByGrade( arraySongs );
 				break;
 			case SORT_ARTIST:
@@ -553,7 +555,7 @@ void MusicWheel::BuildWheelItemDatas( vector<WheelItemData> &arrayWheelItemDatas
 					* so don't re-sort for them. */
 	//				/* We're using sections, so use the section name as the top-level
 	//				 * sort. */
-				if( so != SORT_TOP_GRADES && so != SORT_BPM )
+				if( so != SORT_TOP_GRADES && so != SORT_TOP_GRADES_GROUPED && so != SORT_BPM )
 					SongUtil::SortSongPointerArrayBySectionName(arraySongs, so);
 
 				// make WheelItemDatas with sections
