@@ -308,9 +308,10 @@ void GameState::SetSongInProgress( const CString &sWriteOut )
 
 void GameState::CreateSymlinkFavourite( const CString &sSongDir )
 {
-	LOG->Debug("GameState::CreateSymlinkFavourite( %s )", sSongDir.c_str());
+//	LOG->Debug("GameState::CreateSymlinkFavourite( %s )", sSongDir.c_str());
 	CString sPath = GetCwd();
-	LOG->Debug("what %s", sPath.c_str());
+	CString euphoric = sPath + sSongDir;
+	LOG->Debug("what %s", euphoric.c_str());
 }
 
 /*
