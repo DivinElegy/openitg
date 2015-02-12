@@ -43,6 +43,7 @@ public:
 	void SaveCurrentSettingsToProfile( PlayerNumber pn ); // called at the beginning of each stage
 
 	void SetSongInProgress( const CString &sWriteOut );
+	void CreateSymlinkFavourite( const CString &sSongDir );
 
 	void Update( float fDelta );
 

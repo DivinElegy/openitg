@@ -22,6 +22,7 @@
 #include "Steps.h"
 #include "LuaReference.h"
 #include "StepMania.h"
+#include "RageUtil.h"
 
 #include <ctime>
 #include <set>
@@ -303,6 +304,13 @@ void GameState::SetSongInProgress( const CString &sWriteOut )
 	f.Open(sLockFile, RageFile::WRITE);
 	f.Write( sWriteOut );
 	f.Close();
+}
+
+void GameState::CreateSymlinkFavourite( const CString &sSongDir )
+{
+	LOG->Debug("GameState::CreateSymlinkFavourite( %s )", sSongDir.c_str());
+	CString sPath = GetCwd();
+	LOG->Debug("what %s", sPath.c_str());
 }
 
 /*

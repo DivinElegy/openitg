@@ -1306,6 +1306,12 @@ void ScreenEvaluation::Input( const DeviceInput& DeviceI, const InputEventType t
 		PlayerNumber pn = GAMESTATE->GetCurrentStyle()->ControllerToPlayerNumber( GameI.controller );
 		HighScore &hs = m_HighScore[pn];
 
+		if( CodeDetector::EnteredCode(GameI.controller, CODE_SAVE_SONG) )
+		{
+			SCREENMAN->SystemMessage( "Nice Meme!" );
+			GAMESTATE->CreateSymlinkFavourite( GAMESTATE->m_pCurSong->GetSongDir() );
+		}
+
 
 		if( CodeDetector::EnteredCode(GameI.controller, CODE_SAVE_SCREENSHOT1) ||
 			CodeDetector::EnteredCode(GameI.controller, CODE_SAVE_SCREENSHOT2) )

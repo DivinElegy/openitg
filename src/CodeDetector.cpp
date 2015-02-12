@@ -50,6 +50,7 @@ const CString CodeNames[] = {
 	"NextBannerGroup2",
 	"SaveScreenshot1",
 	"SaveScreenshot2",
+	"SaveSong",
 	"CancelAllPlayerOptions",
 	"BackInEventMode",
 	"OptionsListOpen1",
