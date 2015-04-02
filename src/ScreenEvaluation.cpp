@@ -1308,7 +1308,7 @@ void ScreenEvaluation::Input( const DeviceInput& DeviceI, const InputEventType t
 
 		if( CodeDetector::EnteredCode(GameI.controller, CODE_SAVE_SONG) )
 		{
-			SCREENMAN->SystemMessage( "Nice Meme!" );
+			SCREENMAN->SystemMessage( "Added song to favourites." );
 			GAMESTATE->CreateSymlinkFavourite( GAMESTATE->m_pCurSong->GetSongDir() );
 		}
 

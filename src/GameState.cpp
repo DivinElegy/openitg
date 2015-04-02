@@ -26,7 +26,7 @@
 
 #include <ctime>
 #include <set>
-
+#include <unistd.h>
 
 GameState*	GAMESTATE = NULL;	// global and accessable from anywhere in our program
 
@@ -308,10 +308,21 @@ void GameState::SetSongInProgress( const CString &sWriteOut )
 
 void GameState::CreateSymlinkFavourite( const CString &sSongDir )
 {
-//	LOG->Debug("GameState::CreateSymlinkFavourite( %s )", sSongDir.c_str());
-	CString sPath = GetCwd();
+	LOG->Debug("GameState::CreateSymlinkFavourite( %s )", sSongDir.c_str());
+	CString sPath = GetCwd(); //TODO: This only works if you CD to the itg dir first
 	CString euphoric = sPath + sSongDir;
+
+        CString thing = sSongDir;
+        thing.Replace("\\","/");
+        CStringArray bits;
+        split( thing, "/", bits );
+        const CString &sLastBit = bits[bits.size()-1];
+
+        CString whereToLink = "/itg/Songs/A is for Cool Shit/" + sLastBit;
+
 	LOG->Debug("what %s", euphoric.c_str());
+        LOG->Debug("when %s", whereToLink.c_str());
+        symlink(euphoric.c_str(), whereToLink.c_str());
 }
 
 /*
